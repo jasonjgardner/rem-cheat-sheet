@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+/*---
+Settings
+*/
+
+:root {
+	--color-text: #345;
+	--color-muted: #33445590;
+	--color-light: #f6f8fa;
+	--color-lighter: #fafbfc;
+	--color-dark: #24292e;
+	--color-link: #0076df;
+	--color-primary: #0366d6;
+	--color-alternate: #6f42c1;
+	--color-warning: #ffd33d;
+	--color-error: #d73a49;
+	--color-success: #28a745;
+	--font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+	--font-size-base: 16px;
+	--line-height: 1.5;
+	--size-base: calc(var(--font-size-base) * var(--line-height) * .5);
+}
+
+/*---
+Tools / Mixins
+*/
+
+/*---
+Generic / Resets
+*/
+
+h1,
+.h1 {
+	font-size: 2rem;
+}
+
+h2,
+.h2 {
+	font-size: 1.5rem;
+}
+
+h3,
+.h3 {
+	font-size: 1.25rem;
+}
+
+h4,
+.h4 {
+	font-size: 1rem;
+}
+
+h5,
+.h5 {
+	font-size: .875rem
+}
+
+h6,
+.h6 {
+	font-size: .75rem
+}
+
+.h7 {
+	font-size: .5rem;
+}
+
+.text--thin {
+	font-weight: 300;
+}
+
+.text--uppercase {
+	text-transform: uppercase;
+}
+
+.text--monospace {
+	font-family: var(--font-family-monospace);
+}
+
+.color--primary {
+	color: var(--color-primary);
+}
+
+.color--alternate {
+	color: var(--color-alternate);
+}
+
+/*---
+Elements / Bare overrides
+*/
+
+:any-link {
+	color: var(--color-link);
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+body {
+	background-color: white;
+	color: var(--color-text);
+	font-family: var(--font-family-sans-serif);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height);
+	margin: 0;
+	min-width: 320px;
+	padding: 0;
+}
+
+/*---
+Objects / Layouts
+*/
+
+.container {
+	margin: 0 auto;
+	max-width: 75em;
+	padding: 0 var(--size-base);
+}
+
+@media (width < 480px) {
+
+}
+
+/*---
+Components / Modules
+*/
+
+.header {
+	align-items: center;
+	border-bottom: 2px solid currentColor;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	margin-bottom: calc(var(--size-base) * 2);
+	padding: 0 0 var(--size-base);
+}
+
+.title {
+
+}
+
+/*---
+Overrides / Themes / Hacks
+*/
