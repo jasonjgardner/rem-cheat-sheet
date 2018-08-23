@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -7,32 +7,107 @@
 
 	<title>REM Reference</title>
 
-	<link href="vendor/normalize.css" rel="stylesheet" charset="UTF-8">
+	<link href="assets/vendor/normalize.css" rel="stylesheet" charset="UTF-8">
+	<link href="assets/vendor/tippy.css" rel="stylesheet" charset="UTF-8">
 	<link href="assets/css/style.css" rel="stylesheet" charset="UTF-8">
 </head>
 <body role="document">
+<a name="top"></a>
+<a href="#content" class="c-scroll-up" tabindex="-2" aria-hidden="true">
+	<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 640 640">
+		<title>Jump to content beginning</title>
+		<path
+			d="M288 122.496L93.728 316.768 48.48 271.52 320 0l271.52 271.52-45.248 45.248L352 122.496V640h-64V122.496z"></path>
+	</svg>
+</a>
+<!-- /.scroll-up -->
 <div class="o-container">
-	<div class="c-header">
-		<h1>REM Unit Reference</h1>
-	</div>
-	<!-- /.header -->
+	<header class="o-header">
+		<div class="c-header">
+			<h1>REM Unit Reference</h1>
 
-	<main>
-		<header class="c-title">
-			<h1 id="font-size" title="Base font size" data-toggle="tooltip"></h1>
-			<p class="ml-auto">= <b class="color--primary">1rem</b></p>
-		</header>
+			<button class="u-needs-js" id="toggle-settings" type="button" aria-expanded="false" aria-controls="settings"
+					aria-label="Open / close settings">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+					<title>Settings menu</title>
+					<path
+						d="M320 384c-35.346 0-64-28.654-64-64s28.654-64 64-64c35.346 0 64 28.654 64 64s-28.654 64-64 64zm0-192c-35.346 0-64-28.654-64-64s28.654-64 64-64c35.346 0 64 28.654 64 64s-28.654 64-64 64zm0 384c-35.346 0-64-28.654-64-64s28.654-64 64-64c35.346 0 64 28.654 64 64s-28.654 64-64 64z"></path>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+					<title>Close</title>
+					<path
+						d="M320 274.752L93.728 48.48 48.48 93.728 274.752 320 48.48 546.272l45.248 45.248L320 365.248 546.272 591.52l45.248-45.248L365.248 320 591.52 93.728 546.272 48.48 320 274.752z"></path>
+				</svg>
+			</button>
+		</div>
 
-		<div id="stage"></div>
-		<!-- /#stage -->
-	</main>
+		<form class="u-hide" id="settings" name="settings">
+			<div class="o-form-group">
+				<label for="font-size-range">Base font size</label>
 
-	<footer>
-		<p><a href="https://jasongardner.co">By Jason</a></p>
-	</footer>
+				<div class="o-form-group__range">
+					<input id="font-size-range" name="fontSizeRange" type="range" min="8" max="72" value="16">
+				</div>
+			</div>
+			<!-- /.o-form-group -->
+
+			<div class="o-form-group">
+				<label for="pixel-range">Pixel preview range</label>
+
+				<div class="o-form-group__range">
+					<input id="pixel-range" name="pixelRange" type="range" min="6" max="200" value="120">
+					<output name="pixelRangePixels"></output>
+				</div>
+			</div>
+			<!-- /.o-form-group -->
+
+			<input name="decimalPlaces" type="hidden" value="4">
+		</form>
+
+		<a name="content"></a>
+		<div class="c-title">
+			<h2 title="Base font size" data-toggle="tooltip">
+				<output id="font-size"></output>
+			</h2>
+			<p>= <span class="color--primary">1rem</span></p>
+
+			<a class="c-sort" id="sort-column" href="/?sort=" role="button">
+				<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 289.64 144.82">-->
+				<!--<path d="M162.92 18.1L144.82 0 0 144.82h289.64L162.92 18.1z"></path>-->
+				<!--</svg>-->
+
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+					<path
+						d="M274.099 180.48L256 162.381 111.181 307.2l36.198 36.199L256 234.804l108.621 108.595L400.82 307.2z"/>
+				</svg>
+			</a>
+		</div>
+	</header>
+	<!-- /.o-header -->
+
+	<main class="o-column" id="stage"></main>
 </div>
-<!-- /.container -->
-<script src="https://unpkg.com/tippy.js/dist/tippy.all.min.js"></script>
-<script src="assets/js/script.js"></script>
+<!-- /.o-container -->
+
+<footer class="o-footer">
+	<div class="o-container">
+		<div class="o-footer__section">
+			<h6><a href="https://jasongardner.co">By Jason</a></h6>
+			<p title="Version 1.0.0"><span class="text--monospace">v1.0.0</span></p>
+		</div>
+
+		<div class="o-footer__section">
+			<h6>License</h6>
+			<p><a href="#">MIT</a></p>
+		</div>
+
+		<div class="o-footer__section">
+			<p>View source on <a href="#"><b>GitHub</b></a> or <a href="#"><b>CodePen</b></a>.</p>
+		</div>
+	</div>
+	<!-- /.o-container -->
+</footer>
+
+<script src="assets/js/index.js" type="module"></script>
 </body>
 </html>

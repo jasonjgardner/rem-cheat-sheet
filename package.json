@@ -31,13 +31,22 @@
     "stylelint": "^9.5.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "tippy.js": "^1.4.2"
   },
   "config": {
     "copy": [
       [
         "node_modules/normalize.css/normalize.css",
         "dist/vendor/normalize.css"
+      ],
+      [
+        "node_modules/tippy.js/dist/tippy.css",
+        "dist/vendor/tippy.css"
+      ],
+      [
+        "node_modules/tippy.js/dist/tippy.js",
+        "dist/vendor/tippy.js"
       ]
     ]
   }

@@ -4,7 +4,6 @@ const pkg = require('./package.json');
 
 module.exports = {
 	plugins: [
-		require('postcss-strip-inline-comments'),
 		require('postcss-preset-env')({
 			stage: 0
 		}),
