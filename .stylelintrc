@@ -24,7 +24,6 @@
     "declaration-block-semicolon-newline-after": "always",
     "declaration-block-single-line-max-declarations": 1,
     "declaration-colon-space-after": "always",
-    "declaration-no-important": true,
     "font-family-name-quotes": "always-where-recommended",
     "font-family-no-duplicate-names": true,
     "font-family-no-missing-generic-family-keyword": true,
@@ -50,7 +49,6 @@
     "no-unknown-animations": true,
     "number-leading-zero": "never",
     "number-max-precision": 8,
-    "property-no-vendor-prefix": true,
     "selector-attribute-brackets-space-inside": "never",
     "selector-attribute-quotes": "always",
     "selector-max-compound-selectors": 5,
@@ -69,7 +67,6 @@
     "string-quotes": "single",
     "time-min-milliseconds": 50,
     "unit-case": "lower",
-    "unit-no-unknown": false,
     "value-keyword-case": [
       "lower",
       {
@@ -77,7 +74,6 @@
           "/font/"
         ]
       }
-    ],
-    "value-no-vendor-prefix": true
+    ]
   }
 }

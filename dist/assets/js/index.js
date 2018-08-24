@@ -1,8 +1,10 @@
 import CustomProperty from './lib/CustomProperty.mjs';
+import spaceless from './lib/spaceless.mjs';
 
 const fontSizeBase = new CustomProperty('font-size-base'),
 	settings = document.forms['settings'],
 	settingsToggle = document.getElementById('toggle-settings'),
+	sortToggle = document.getElementById('sort-column'),
 	stage = document.getElementById('stage'),
 	fontSizeElement = document.getElementById('font-size');
 
@@ -34,22 +36,34 @@ function update() {
 
 		size.id = `${itr}px`;
 		size.className = 'c-sizes';
-		size.innerHTML = '<div class="sizes__wrap">'
-			+ `<p class="sizes__rem" style="font-size:${rem}rem;">${remRounded}rem</p>`
-			+ `<p class="sizes__px"><b>${itr}px</b></p></div>`;
+		size.innerHTML = spaceless`<div class="sizes__wrap">
+			<p class="sizes__rem" style="font-size:${rem}rem;">${remRounded}rem</p>
+			<p class="sizes__px"><b>${itr}px</b></p>
+		</div>`;
 	}
 }
 
 function toggleSettings() {
 	const isVisible = settingsToggle.getAttribute('aria-expanded') === 'true';
 
+	settingsToggle.classList.add('animated');
 	settingsToggle.setAttribute('aria-expanded', JSON.stringify(!isVisible));
 	settings.classList.toggle('u-hide', isVisible);
+	settings.setAttribute('aria-hidden', JSON.stringify(isVisible));
+
+	setTimeout(() => settingsToggle.classList.remove('animated'), 1000);
+}
+
+function toggleSortDirection(event) {
+	event.preventDefault();
+	document.body.classList.toggle('sort--reversed');
+	return false;
 }
 
 document.documentElement.classList.remove('no-js');
 
 settings.addEventListener('input', update, false);
 settingsToggle.addEventListener('click', toggleSettings, false);
+sortToggle.addEventListener('click', toggleSortDirection, false);
 
 update();

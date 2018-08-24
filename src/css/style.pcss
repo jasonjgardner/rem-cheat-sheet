@@ -25,23 +25,26 @@ Custom properties and selectors
 	--color-success: #28a745;
 	--color-label: var(--color-alternate);
 	--color-footer-subtitle-link: #0076df;
+	--font-family-serif: 'Noto Serif', Georgia, Times, 'Times New Roman', serif;
 	--font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 	--font-size-base: 16px;
 	--font-size-static: 16px;
 	--font-size-page-title: calc(var(--font-size-static) * 1.125);
 	--font-size-list-title: calc(var(--font-size-static) * 2.25);
-	--font-size-subtitle: calc(var(--font-size-static)  * .875);
+	--font-size-subtitle: calc(var(--font-size-static) * .875);
 	--font-size-output: calc(var(--font-size-static) * .8125);
 	--line-height: 1.5;
 	--size-base: calc(var(--font-size-base) * var(--line-height) * .5);
 	--vr: calc(var(--font-size-static) * var(--line-height) * .5);
+	--duration-base: .333s;
 	--duration-fast: .4s;
 }
 
 @custom-selector :--hn h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .h7;
 
 @custom-media --screen-md-up (width >= 480px);
+
 @custom-media --screen-lg-up (width > 960px);
 
 /*---
@@ -50,6 +53,24 @@ layer: 3
 ---
 Resets, normalizations, and high-level styles
 */
+
+@keyframes swap-icon {
+	10% {
+		transform: translateY(120%);
+	}
+
+	33% {
+		opacity: 0;
+	}
+
+	50% {
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
 
 /*---
 title:   Colors
@@ -98,6 +119,10 @@ section: Generics
 
 .text--monospace {
 	font-family: var(--font-family-monospace);
+}
+
+.animated {
+	animation-play-state: running;
 }
 
 /*---
@@ -373,6 +398,64 @@ UI modules. Contains most specific selectors.
 */
 
 /*---
+title:   Buttons
+section: Components
+---
+```example:html
+```
+*/
+.c-btn {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	all: initial;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: normal;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+	white-space: nowrap;
+}
+
+.c-btn--ico {
+	display: block;
+	height: 1em;
+	width: 1em;
+}
+
+/*---
+title:   Icons
+section: Components
+---
+```example:svg
+<symbol id="icon-..." xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"></symbol>
+```
+example:html```
+<svg class="c-ico">
+	<title>...</title>
+	<use xlink:href="assets/img/symbol-defs.svg#c-ico..."></use>
+</svg>
+```
+*/
+
+.c-ico {
+	display: block;
+	fill: currentColor;
+	height: 1em;
+	vertical-align: baseline;
+}
+
+.c-btn .c-ico {
+	display: inline-block;
+	fill: currentColor;
+	height: 1em;
+	margin: 0 auto;
+	stroke: currentColor;
+	stroke-width: 0;
+	width: 1em;
+}
+
+/*---
 title:   Sort button
 section: Components
 ---
@@ -384,40 +467,21 @@ Sort direction toggle button
 	font-size: var(--font-size-static);
 	line-height: 1;
 	margin-left: auto;
+	text-align: right;
 }
 
-.c-sort svg {
+.c-sort .c-ico {
 	color: var(--color-dark);
 	height: 1em;
+	transform: rotate(180deg);
+	transform-origin: center;
+	transition: transform var(--duration-fast) ease-out;
+	width: 1em;
+	vertical-align: middle;
 }
 
-/*---
-title:   Scroll button
-section: Components
----
-Scroll to top button
-*/
-
-.c-scroll-up {
-	bottom: calc(.5 * var(--font-size-static));
-	height: var(--font-size-static);
-	position: fixed;
-	width: var(--font-size-static);
-	right: calc(.5 * var(--font-size-static));
-}
-
-[dir='rtl'] .c-scroll-up {
-	left: 12px;
-	right: unset;
-}
-
-.c-scroll-up svg {
-	fill: var(--color-dark);
-}
-
-.c-scroll-up:hover svg,
-.c-scroll-up:focus svg {
-	fill: var(--color-primary);
+.sort--reversed .c-sort .c-ico {
+	transform: rotate(0deg);
 }
 
 /*---
@@ -427,11 +491,11 @@ section: Components
 The application banner/header. Font sizes should not be `rem` units.
 */
 .c-header {
+	align-items: center;
 	display: flex;
-	flex-flow: row wrap;
 	font-size: var(--font-size-static);
 	justify-content: flex-start;
-	margin-top: calc(var(--vr) * 2);
+	margin: calc(var(--vr) * 2) 0 calc(var(--vr) * 3);
 	padding: 0;
 }
 
@@ -442,25 +506,24 @@ The application banner/header. Font sizes should not be `rem` units.
 	margin: 0;
 }
 
-.c-header button {
-	all: initial;
-	appearance: none;
+.c-header .c-btn {
+	display: block;
 	margin-left: auto;
 }
 
-.c-header [aria-controls='settings'] svg {
-	display: none;
+/*noinspection CssInvalidFunction*/
+.c-header [aria-controls='settings'] {
+	animation: swap-icon var(--duration-fast) ease-out;
+	animation-play-state: paused;
+	background: svg-load('close.svg') no-repeat center;
+	display: block;
 	height: var(--font-size-static);
 	fill: var(--color-muted);
 }
 
+/*noinspection CssInvalidFunction*/
 .c-header [aria-controls='settings'][aria-expanded='false'] {
-	margin-bottom: calc(var(--vr) * 3);
-}
-
-.c-header [aria-controls='settings'][aria-expanded='true'] svg + svg,
-.c-header [aria-controls='settings'][aria-expanded='false'] svg:first-of-type {
-	display: block;
+	background-image: svg-load('dots-horizontal-triple.svg');
 }
 
 /*---
@@ -510,6 +573,12 @@ The rem to pixel relation display.
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	user-select: all;
+}
+
+.c-sizes p::selection,
+.c-sizes b::selection {
+	background: var(--color-text);
+	color: white;
 }
 
 .sizes__wrap {
@@ -573,6 +642,42 @@ Shortcuts, shorthands, and helper classes
 .u-hide,
 .no-js .u-needs-js {
 	display: none !important;
+}
+
+@media print {
+	.c-header {
+		margin-top: 0;
+	}
+
+	.u-hide--print {
+		display: none;
+	}
+
+	.u-invisible--print {
+		visibility: hidden;
+	}
+
+	.sizes__wrap {
+		page-break-inside: avoid;
+	}
+
+	.o-footer .o-container {
+		flex-direction: column;
+	}
+
+	.o-footer__section {
+		border-left-width: 0;
+		margin-left: 0 !important;
+		padding-left: 0;
+	}
+
+	a[href^='http://']::after,
+	a[href^='https://']::after {
+		content: ' (' attr(href) ')';
+		font-size: .925em;
+		font-style: italic;
+		font-weight: normal;
+	}
 }
 
 /*---
