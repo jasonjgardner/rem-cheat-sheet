@@ -11,7 +11,6 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
 	<link href="assets/vendor/normalize.css" rel="stylesheet">
-	<link href="assets/vendor/tippy.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -21,13 +20,17 @@
 		<div class="c-header">
 			<h1>REM Unit Reference</h1>
 
+			<form class="c-search-form" id="search" name="search">
+				<input class="c-search-form__input" id="search-box" name="searchBox" type="search" placeholder="Convert pixels">
+			</form>
+
 			<button class="c-btn c-btn--ico u-needs-js" id="toggle-settings" type="button" title="Open/close settings" tabindex="-1"
 					aria-expanded="false" aria-controls="settings">
 				<span class="u-hide">Settings</span>
 			</button>
 		</div>
 
-		<form class="u-hide u-hide--print" id="settings" name="settings" aria-hidden="true">
+		<form class="c-settings-form u-hide u-hide--print" id="settings" name="settings" aria-hidden="true">
 			<div class="o-form-group">
 				<label for="font-size-range">Base font size</label>
 
@@ -91,7 +94,7 @@
 		<div class="o-footer__section">
 			<h6>Fork</h6>
 			<p>View source on <a href="#" itemprop="codeRepository"><b>GitHub</b></a> or <a href="#"><b>CodePen</b></a>.
-				<br><small>Read the generated <a href="docs/" title="View documentation and style guide">documentation</a></small></p>
+				<br><small>Read the generated <a href="docs/" target="_blank" title="View documentation and style guide">documentation</a></small></p>
 		</div>
 	</div>
 	<!-- /.o-container -->

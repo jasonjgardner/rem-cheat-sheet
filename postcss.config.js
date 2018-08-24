@@ -13,9 +13,17 @@ module.exports = {
 		}),
 		require('autoprefixer'),
 		require('mdcss')({
-			destination: './dist/docs/styleguide',
-			theme: require('mdcss-theme-github')
+			destination: pkg.config.mdcss.destination,
+			theme: require('mdcss-theme-github')({
+				title: pkg.config.mdcss.title
+			})
 		}),
-		require('cssnano')
+		require('cssnano')({
+			preset: ['default', {
+				svgo: {
+					exclude: true
+				}
+			}]
+		})
 	]
 };

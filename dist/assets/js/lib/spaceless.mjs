@@ -1,3 +1,9 @@
+/**
+ * Strip excess whitespace from a template literal
+ * @param {string} strings - Template string
+ * @param {array} values - Template variable values
+ * @returns {string} Template string in one line
+ */
 export default function spaceless(strings, ...values) {
 	const len = values.length;
 

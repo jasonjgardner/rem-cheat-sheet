@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postcss": "postcss src/css/style.pcss -o dist/assets/css/style.css -m",
     "babel": "babel src/js/script.js -o dist/assets/js/script.js --source-maps",
-    "npm:copy": "node build/copy.js"
+    "npm:copy": "node build/copy.js",
+    "jsdoc": "jsdoc dist/assets/js/index.js dist/assets/js/lib/CustomProperty.mjs dist/assets/js/lib/spaceless.mjs -d dist/docs/jsdoc"
   },
   "keywords": [
     "rem",
@@ -18,11 +19,12 @@
   "author": "Jason Gardner <holler@jasongardner.co>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "autoprefixer": "^9.1.2",
+    "@babel/preset-env": "^7.0.0-rc.2",
+    "autoprefixer": "^9.1.3",
     "babel-cli": "^6.26.0",
     "cssnano": "^4.0.5",
     "eslint": "^5.4.0",
+    "jsdoc": "^3.5.5",
     "mdcss": "^1.5.2",
     "mdcss-theme-github": "^2.4.2",
     "postcss": "^7.0.2",
@@ -34,22 +36,17 @@
     "stylelint": "^9.5.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.0",
-    "tippy.js": "^1.4.2"
+    "normalize.css": "^8.0.0"
   },
   "config": {
+    "mdcss": {
+      "title": "REM Reference",
+      "destination": "dist/docs/styleguide"
+    },
     "copy": [
       [
         "node_modules/normalize.css/normalize.css",
-        "dist/vendor/normalize.css"
-      ],
-      [
-        "node_modules/tippy.js/dist/tippy.css",
-        "dist/vendor/tippy.css"
-      ],
-      [
-        "node_modules/tippy.js/dist/tippy.js",
-        "dist/vendor/tippy.js"
+        "dist/assets/vendor/normalize.css"
       ]
     ]
   }
