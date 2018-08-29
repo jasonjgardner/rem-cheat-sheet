@@ -44,7 +44,12 @@ function update() {
 
 	const decimals = Math.max(0, Math.min(10, settings.elements.decimalPlaces.value || 4));
 
-	let itr = +settings.elements.pixelRangePixels.value + 1;
+	let itr = +settings.elements.pixelRangePixels.value + 1,
+		units = 'rem';
+
+	if (document.body.classList.contains('unitless')) {
+		units = '';
+	}
 
 	while (itr > settings.elements.pixelRange.min) {
 		--itr;
@@ -58,7 +63,7 @@ function update() {
 		size.id = `${itr}px`;
 		size.className = 'c-sizes';
 		size.innerHTML = spaceless`<div class="sizes__wrap">
-			<p class="sizes__rem" style="font-size:${rem}rem;">${remRounded}rem</p>
+			<p class="sizes__rem" style="font-size:${rem}rem;">${remRounded}${units}</p>
 			<p class="sizes__px"><b>${itr}px</b></p>
 		</div>`;
 	}
@@ -125,5 +130,6 @@ settings.addEventListener('input', debounce(update, 300), false);
 settingsToggle.addEventListener('click', debounce(toggleSettings, 100), false);
 sortToggle.addEventListener('click', debounce(toggleSortDirection, 100), false);
 fontSizeElement.addEventListener('input', debounce(filterResults, 300), false);
+settings.showUnits.addEventListener('change', () => document.body.classList.toggle('unitless'));
 
 update();

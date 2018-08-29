@@ -609,6 +609,33 @@ The rem pixel size display. Font sizes should not be `rem` units.
 	padding: calc(var(--vr) * 2) var(--vr);
 }
 
+.c-radios span {
+	background-color: var(--color-text);
+	border: 1px solid var(--color-text);
+	cursor: pointer;
+	padding: var(--vr);
+	transition: background-color .5s ease-out;
+}
+
+.c-radios span:hover {
+	border-color: var(--color-primary);
+	color: var(--color-primary);
+}
+
+.c-radios span + span,
+.c-radios [checked] + span {
+	color: white;
+}
+
+.c-radios [checked] + span + span {
+	background-color: white;
+	color: var(--color-text);
+}
+
+.c-radios [checked] + span:hover {
+	background-color: var(--color-primary);
+}
+
 /*---
 title:   Font size display
 section: Components
