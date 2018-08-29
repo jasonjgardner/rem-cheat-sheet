@@ -19,11 +19,23 @@ function getRem(pixels) {
 }
 
 /**
+ * Get base font size in pixels
+ * @param {number} maxSize - Maximum font size in pixels
+ * @returns {number} Base font size pixel value
+ */
+function getBase(maxSize) {
+	return Math.max(1, Math.min(
+		maxSize || document.forms['settings'].pixelRange.max,
+		+fontSizeElement.innerHTML.replace(/[^0-9]/g, '')
+	));
+}
+
+/**
  * Update px/rem list after form changes
  */
 function update() {
 	fontSizeBase.style = `${settings.elements.fontSizeRange.value}px`;
-	//fontSizeElement.value = fontSizeBase.value;
+	fontSizeElement.innerHTML = `${fontSizeBase.unitless}`;
 
 	/// Show in output
 	settings.elements.pixelRangePixels.value = parseInt(settings.elements.pixelRange.value, 10);
@@ -39,9 +51,7 @@ function update() {
 
 		const size = document.createElement('div'),
 			rem = getRem(itr),
-			remRounded = +(
-				Math.round(rem + `e+${decimals}`) + `e-${decimals}`
-			);
+			remRounded = parseFloat(Math.round(rem + `e+${decimals}`) + `e-${decimals}`);
 
 		stage.appendChild(size);
 
@@ -79,18 +89,32 @@ function toggleSortDirection(event) {
 	return false;
 }
 
+/**
+ * Set caret position of [contenteditable="true"]
+ * @param {HTMLElement} elem - Editable element
+ */
+function setCaret(elem) {
+	const range = document.createRange(),
+		selection = window.getSelection();
+
+	range.setStart(elem.childNodes[0], elem.innerText.trim().length);
+	range.collapse(true);
+	selection.removeAllRanges();
+	selection.addRange(range);
+	elem.focus();
+}
+
+/**
+ * Search for specific pixel size in UI
+ */
 function filterResults() {
-	const pixelRange = document.forms['settings'].pixelRange,
-		val = Math.max(1, Math.min(
-			pixelRange.max,
-			+fontSizeElement.innerText.replace(/[^0-9]/g, '')
-		));
+	const val = getBase(document.forms['settings'].pixelRange.max);
 
-	fontSizeElement.innerText = `${val}`;
-	pixelRange.min = val;
-	pixelRange.value = val;
+	fontSizeElement.innerHTML = `${val}`;
+	setCaret(fontSizeElement);
 
-	console.log(pixelRange.value, val);
+	document.forms['settings'].pixelRange.min = val;
+	document.forms['settings'].pixelRange.value = val;
 
 	update();
 }
