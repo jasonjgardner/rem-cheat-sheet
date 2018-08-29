@@ -545,11 +545,28 @@ The rem pixel size display. Font sizes should not be `rem` units.
 	justify-content: flex-start;
 }
 
+.o-header:focus-within,
+.o-header:hover {
+	border-bottom-color: var(--color-primary);
+}
+
 .c-title :--hn {
 	display: inline-block;
 	font-size: var(--font-size-list-title);
 	margin-right: .125em;
 	text-transform: lowercase;
+}
+
+.c-title :--hn [contenteditable]:focus {
+	-webkit-appearance: none;
+	border: 0;
+	box-shadow: none;
+	color: var(--color-primary);
+	outline: 0;
+}
+
+.c-title :--hn [contenteditable]::after {
+	content: 'px';
 }
 
 .c-title p {
@@ -561,9 +578,22 @@ The rem pixel size display. Font sizes should not be `rem` units.
 }
 
 .c-search-form__input {
+	-webkit-appearance: none;
 	border: 0;
-	border-bottom: 1px solid var(--color-text);
-	padding: var(--size-base);
+	color: var(--color-text);
+	display: inline-block;
+	font: 600 var(--font-size-page-title)/1 var(--font-family-sans-serif);
+	margin: 0;
+	min-height: var(--font-size-page-title);
+	padding: 0;
+	overflow: visible;
+	max-width: 3em;
+}
+
+.c-search-form__input::after {
+	color: currentColor;
+	content: 'px';
+	display: inline-block;
 }
 
 .c-search-form__input:focus {

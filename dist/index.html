@@ -22,11 +22,6 @@
 		<div class="c-header">
 			<h1>REM Unit Reference</h1>
 
-			<form class="c-search-form u-hide--print" id="search" name="search">
-				<input class="c-search-form__input" id="search-box" name="searchBox" type="number"
-					   placeholder="Convert pixels" autofocus role="searchbox">
-			</form>
-
 			<button class="c-btn c-btn--ico u-needs-js" id="toggle-settings" type="button" title="Open/close settings"
 					tabindex="-1"
 					aria-expanded="false" aria-controls="settings">
@@ -62,10 +57,8 @@
 		<a id="content" name="content" tabindex="-1"></a>
 		<div class="c-title">
 			<h2 id="rem-title" title="Base font size" data-toggle="tooltip" aria-live="assertive">
-				<span contenteditable="true" id="font-size"></span>
+				<span id="font-size" contenteditable="true" role="textbox">16</span> <span class="u-hide">pixels</span>
 			</h2>
-			<p>= <span class="color--primary">1rem</span></p>
-
 			<a class="c-sort u-hide--print" id="sort-column" href="/?sort=" title="Change sort direction" tabindex="-2"
 			   role="button" aria-controls="stage">
 				<svg class="c-ico">

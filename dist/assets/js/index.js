@@ -23,7 +23,7 @@ function getRem(pixels) {
  */
 function update() {
 	fontSizeBase.style = `${settings.elements.fontSizeRange.value}px`;
-	fontSizeElement.value = fontSizeBase.value;
+	//fontSizeElement.value = fontSizeBase.value;
 
 	/// Show in output
 	settings.elements.pixelRangePixels.value = parseInt(settings.elements.pixelRange.value, 10);
@@ -83,9 +83,10 @@ function filterResults() {
 	const pixelRange = document.forms['settings'].pixelRange,
 		val = Math.max(1, Math.min(
 			pixelRange.max,
-			document.forms['search'].searchBox.value
+			+fontSizeElement.innerText.replace(/[^0-9]/g, '')
 		));
 
+	fontSizeElement.innerText = `${val}`;
 	pixelRange.min = val;
 	pixelRange.value = val;
 
@@ -99,6 +100,6 @@ document.documentElement.classList.remove('no-js');
 settings.addEventListener('input', debounce(update, 300), false);
 settingsToggle.addEventListener('click', debounce(toggleSettings, 100), false);
 sortToggle.addEventListener('click', debounce(toggleSortDirection, 100), false);
-document.forms['search'].addEventListener('input', debounce(filterResults, 300), false);
+fontSizeElement.addEventListener('input', debounce(filterResults, 300), false);
 
 update();
