@@ -36,6 +36,8 @@
     "stylelint": "^9.5.0"
   },
   "dependencies": {
+    "debounce": "^1.2.0",
+    "delegate": "^3.2.0",
     "normalize.css": "^8.0.0"
   },
   "config": {
@@ -47,6 +49,14 @@
       [
         "node_modules/normalize.css/normalize.css",
         "dist/assets/vendor/normalize.css"
+      ],
+      [
+        "node_modules/debounce/index.js",
+        "dist/assets/vendor/debounce.js"
+      ],
+      [
+        "node_modules/delegate/dist/delegate.js",
+        "dist/assets/vendor/delegate.js"
       ]
     ]
   }

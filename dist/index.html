@@ -7,6 +7,8 @@
 
 	<title>REM Reference</title>
 
+	<meta name="robots" content="index,follow">
+
 	<link href="assets/img/favico.png" rel="icon" type="image/png">
 
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
@@ -20,11 +22,13 @@
 		<div class="c-header">
 			<h1>REM Unit Reference</h1>
 
-			<form class="c-search-form" id="search" name="search">
-				<input class="c-search-form__input" id="search-box" name="searchBox" type="search" placeholder="Convert pixels">
+			<form class="c-search-form u-hide--print" id="search" name="search">
+				<input class="c-search-form__input" id="search-box" name="searchBox" type="number"
+					   placeholder="Convert pixels" autofocus role="searchbox">
 			</form>
 
-			<button class="c-btn c-btn--ico u-needs-js" id="toggle-settings" type="button" title="Open/close settings" tabindex="-1"
+			<button class="c-btn c-btn--ico u-needs-js" id="toggle-settings" type="button" title="Open/close settings"
+					tabindex="-1"
 					aria-expanded="false" aria-controls="settings">
 				<span class="u-hide">Settings</span>
 			</button>
@@ -35,7 +39,8 @@
 				<label for="font-size-range">Base font size</label>
 
 				<div class="o-form-group__range">
-					<input id="font-size-range" name="fontSizeRange" type="range" min="8" max="72" value="16" tabindex="-3" aria-controls="rem-title">
+					<input id="font-size-range" name="fontSizeRange" type="range" min="8" max="72" value="16"
+						   tabindex="-3" aria-controls="rem-title">
 				</div>
 			</div>
 			<!-- /.o-form-group -->
@@ -44,7 +49,8 @@
 				<label for="pixel-range">Pixel preview range</label>
 
 				<div class="o-form-group__range">
-					<input id="pixel-range" name="pixelRange" type="range" min="6" max="200" value="120" tabindex="-3" aria-controls="stage">
+					<input id="pixel-range" name="pixelRange" type="range" min="6" max="200" value="120" tabindex="-3"
+						   aria-controls="stage">
 					<output name="pixelRangePixels"></output>
 				</div>
 			</div>
@@ -56,11 +62,12 @@
 		<a id="content" name="content" tabindex="-1"></a>
 		<div class="c-title">
 			<h2 id="rem-title" title="Base font size" data-toggle="tooltip" aria-live="assertive">
-				<output id="font-size"></output>
+				<span contenteditable="true" id="font-size"></span>
 			</h2>
 			<p>= <span class="color--primary">1rem</span></p>
 
-			<a class="c-sort u-hide--print" id="sort-column" href="/?sort=" title="Change sort direction" tabindex="-2" role="button" aria-controls="stage">
+			<a class="c-sort u-hide--print" id="sort-column" href="/?sort=" title="Change sort direction" tabindex="-2"
+			   role="button" aria-controls="stage">
 				<svg class="c-ico">
 					<title>Sort direction</title>
 					<use xlink:href="assets/img/symbol-defs.svg#c-ico-chevron-thin-up"></use>
@@ -86,15 +93,21 @@
 		<div class="o-footer__section">
 			<h6>License</h6>
 			<p>
-				<a href="#" itemprop="license">MIT</a><br>
-				<small>See <a href="#" rel="noopener">attribution</a></small>
+				<a href="https://github.com/jasonjgardner/rem-cheat-sheet/blob/master/LICENSE" rel="noopener"
+				   itemprop="license">MIT</a><br>
+				<small>See <a href="https://github.com/jasonjgardner/rem-cheat-sheet/blob/master/README.md#Attribution"
+							  rel="noopener">attribution</a></small>
 			</p>
 		</div>
 
 		<div class="o-footer__section">
 			<h6>Fork</h6>
-			<p>View source on <a href="#" itemprop="codeRepository"><b>GitHub</b></a> or <a href="#"><b>CodePen</b></a>.
-				<br><small>Read the generated <a href="docs/" target="_blank" title="View documentation and style guide">documentation</a></small></p>
+			<p>View source on <a href="https://github.com/jasonjgardner/rem-cheat-sheet" rel="noopener" itemprop="codeRepository">
+				<b>GitHub</b>
+				</a> or <a href="https://codepen.io/jasongardner/pen/qMBXEr" rel="noopener"><b>CodePen</b></a>.
+				<br><small class="u-hide--print">Read the generated <a href="docs/" target="_blank" title="View documentation and style guide">
+					documentation</a></small>
+			</p>
 		</div>
 	</div>
 	<!-- /.o-container -->

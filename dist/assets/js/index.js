@@ -1,3 +1,4 @@
+import debounce from './lib/debounce.mjs';
 import CustomProperty from './lib/CustomProperty.mjs';
 import spaceless from './lib/spaceless.mjs';
 
@@ -38,7 +39,9 @@ function update() {
 
 		const size = document.createElement('div'),
 			rem = getRem(itr),
-			remRounded = +(Math.round(rem + `e+${decimals}`) + `e-${decimals}`);
+			remRounded = +(
+				Math.round(rem + `e+${decimals}`) + `e-${decimals}`
+			);
 
 		stage.appendChild(size);
 
@@ -76,10 +79,26 @@ function toggleSortDirection(event) {
 	return false;
 }
 
+function filterResults() {
+	const pixelRange = document.forms['settings'].pixelRange,
+		val = Math.max(1, Math.min(
+			pixelRange.max,
+			document.forms['search'].searchBox.value
+		));
+
+	pixelRange.min = val;
+	pixelRange.value = val;
+
+	console.log(pixelRange.value, val);
+
+	update();
+}
+
 document.documentElement.classList.remove('no-js');
 
-settings.addEventListener('input', update, false);
-settingsToggle.addEventListener('click', toggleSettings, false);
-sortToggle.addEventListener('click', toggleSortDirection, false);
+settings.addEventListener('input', debounce(update, 300), false);
+settingsToggle.addEventListener('click', debounce(toggleSettings, 100), false);
+sortToggle.addEventListener('click', debounce(toggleSortDirection, 100), false);
+document.forms['search'].addEventListener('input', debounce(filterResults, 300), false);
 
 update();
