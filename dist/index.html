@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en-US">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -7,16 +7,17 @@
 
 	<title>REM Reference</title>
 
+	<meta name="description" content="Convert CSS pixels to rem units with a live preview">
 	<meta name="robots" content="index,follow">
+	<meta name="theme-color" content="#fff">
 
 	<link href="assets/img/favico.png" rel="icon" type="image/png">
 
-	<link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
 	<link href="assets/vendor/normalize.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-<a id="top" name="top"></a>
+<a id="top"></a>
 <div class="o-container">
 	<header class="o-header">
 		<div class="c-header">
@@ -29,7 +30,7 @@
 			</button>
 		</div>
 
-		<form class="c-settings-form u-hide u-hide--print" id="settings" name="settings" aria-hidden="true">
+		<form class="c-settings-form u-hide u-hide--print" id="settings" aria-hidden="true">
 			<div class="o-form-group">
 				<label for="font-size-range">Base font size</label>
 
@@ -53,10 +54,8 @@
 
 			<div class="o-form-group">
 				<label class="c-radios" for="show-units">
-					Show units in results
-					<input id="show-units" name="showUnits" type="checkbox" checked>
-					<span aria-hidden="true">Show units</span>
-					<span aria-hidden="true">Hide units</span>
+					<input id="show-units" name="showUnits" type="checkbox" tabindex="-3">
+					Hide <span class="text--monospace text--thin">rem</span> unit label
 				</label>
 
 			</div>
@@ -65,12 +64,13 @@
 			<input name="decimalPlaces" type="hidden" value="4">
 		</form>
 
-		<a id="content" name="content" tabindex="-1"></a>
-		<div class="c-title">
+		<a id="content" tabindex="-1"></a>
+		<div class="c-title u-needs-js">
 			<h2 id="rem-title" title="Base font size" data-toggle="tooltip" aria-live="assertive">
 				<span id="font-size" contenteditable="true" role="textbox">16</span> <span class="u-hide">pixels</span>
 			</h2>
-			<a class="c-sort u-hide--print" id="sort-column" href="/?sort=" title="Change sort direction" tabindex="-2"
+			<a class="c-sort u-hide--print u-needs-js" id="sort-column" href="#" title="Change sort direction"
+			   tabindex="-2"
 			   role="button" aria-controls="stage">
 				<svg class="c-ico">
 					<title>Sort direction</title>
@@ -81,7 +81,13 @@
 	</header>
 	<!-- /.o-header -->
 
-	<main class="o-column" id="stage" aria-live="polite"></main>
+	<main class="o-column" id="stage" aria-live="polite">
+		<noscript>
+			<h2>This page requires JavaScript</h2>
+			<p>Please enable JavaScript in your browser to view all the bells and whistles.<br>
+				(It&rsquo;s safe and speedy. <a href="https://github.com/jasonjgardner/rem-cheat-sheet" rel="noopener">You can even check the source code.</a>)</p>
+		</noscript>
+	</main>
 </div>
 <!-- /.o-container -->
 
@@ -106,11 +112,12 @@
 
 		<div class="o-footer__section">
 			<h6>Fork</h6>
-			<p>View source on <a href="https://github.com/jasonjgardner/rem-cheat-sheet" rel="noopener" itemprop="codeRepository">
+			<p>View source on <a href="https://github.com/jasonjgardner/rem-cheat-sheet" rel="noopener"
+								 itemprop="codeRepository">
 				<b>GitHub</b>
-				</a> or <a href="https://codepen.io/jasongardner/pen/qMBXEr" rel="noopener"><b>CodePen</b></a>.
-				<br><small class="u-hide--print">Read the generated <a href="docs/" target="_blank" title="View documentation and style guide">
-					documentation</a></small>
+			</a> or <a href="https://codepen.io/jasongardner/pen/qMBXEr" rel="noopener"><b>CodePen</b></a>.
+				<br>
+				<small class="u-hide--print">Read the generated <a href="docs/" title="View documentation and style guide">documentation</a></small>
 			</p>
 		</div>
 	</div>

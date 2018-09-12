@@ -1,9 +1,8 @@
-import debounce from './lib/debounce.mjs';
 import CustomProperty from './lib/CustomProperty.mjs';
 import spaceless from './lib/spaceless.mjs';
 
 const fontSizeBase = new CustomProperty('font-size-base'),
-	settings = document.forms['settings'],
+	settings = document.forms.settings,
 	settingsToggle = document.getElementById('toggle-settings'),
 	sortToggle = document.getElementById('sort-column'),
 	stage = document.getElementById('stage'),
@@ -25,7 +24,7 @@ function getRem(pixels) {
  */
 function getBase(maxSize) {
 	return Math.max(1, Math.min(
-		maxSize || document.forms['settings'].pixelRange.max,
+		maxSize || settings.pixelRange.max,
 		+fontSizeElement.innerHTML.replace(/[^0-9]/g, '')
 	));
 }
@@ -85,11 +84,9 @@ function toggleSettings() {
 
 /**
  * Change sort direction on button click
- * @param {Event} event - Click event
  * @returns {boolean} Returns `false` to prevent bubbling
  */
-function toggleSortDirection(event) {
-	event.preventDefault();
+function toggleSortDirection() {
 	document.body.classList.toggle('sort--reversed');
 	return false;
 }
@@ -113,23 +110,23 @@ function setCaret(elem) {
  * Search for specific pixel size in UI
  */
 function filterResults() {
-	const val = getBase(document.forms['settings'].pixelRange.max);
+	const val = getBase(settings.pixelRange.max);
 
 	fontSizeElement.innerHTML = `${val}`;
 	setCaret(fontSizeElement);
 
-	document.forms['settings'].pixelRange.min = val;
-	document.forms['settings'].pixelRange.value = val;
+	settings.pixelRange.min = val;
+	settings.pixelRange.value = val;
 
 	update();
 }
 
 document.documentElement.classList.remove('no-js');
 
-settings.addEventListener('input', debounce(update, 300), false);
-settingsToggle.addEventListener('click', debounce(toggleSettings, 100), false);
-sortToggle.addEventListener('click', debounce(toggleSortDirection, 100), false);
-fontSizeElement.addEventListener('input', debounce(filterResults, 300), false);
+settings.addEventListener('input', update, false);
+settingsToggle.addEventListener('click', toggleSettings, false);
+sortToggle.addEventListener('click', toggleSortDirection, false);
+fontSizeElement.addEventListener('input', filterResults, false);
 settings.showUnits.addEventListener('change', () => document.body.classList.toggle('unitless'));
 
 update();
