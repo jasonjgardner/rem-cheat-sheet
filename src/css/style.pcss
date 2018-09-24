@@ -35,6 +35,7 @@ Custom properties and selectors
 	--font-size-subtitle: calc(var(--font-size-static) * .875);
 	--font-size-output: calc(var(--font-size-static) * .8125);
 	--line-height: 1.5;
+	--line-height-static: calc(var(--line-height) * var(--font-size-static));
 	--size-base: calc(var(--font-size-base) * var(--line-height) * .5);
 	--vr: calc(var(--font-size-static) * var(--line-height) * .5);
 	--duration-base: .333s;
@@ -158,6 +159,10 @@ body {
 
 svg {
 	fill: currentColor;
+}
+
+[aria-live='polite'] {
+	will-change: contents;
 }
 
 /*---
@@ -296,6 +301,10 @@ Header object. Covers top of page.
 	border-bottom: 2px solid currentColor;
 	margin-bottom: calc(var(--vr) * 2);
 	padding: var(--vr) 0;
+}
+
+.o-form-group {
+	line-height: var(--line-height-static);
 }
 
 .o-form-group + .o-form-group {
